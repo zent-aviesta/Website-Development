@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Laihan Javascript 01</title>
+  </head>
+<body onload="runCalculator()">
+</body>
+
+<script>
+function runCalculator() {
+  const aStr = prompt("Masukkan angka 1:", "");
+  if (aStr === null) return;
+
+  const bStr = prompt("Masukkan angka 2:", "");
+  if (bStr === null) return;
+
+  const op = prompt("Masukkan operator (+,-,*,/):", "");
+  if (op === null) return;
+
+  const a = parseFloat(aStr.replace(',', '.'));
+  const b = parseFloat(bStr.replace(',', '.'));
+  if (isNaN(a) || isNaN(b)) {
+    alert("Input tidak valid — masukkan angka.");
+    return;
+  }
+
+  let result;
+  switch (op.trim()) {
+    case '+':
+      result = a + b;
+      break;
+    case '-':
+      result = a - b;
+      break;
+    case '*':
+      result = a * b;
+      break;
+    case '/':
+      if (b === 0) {
+        alert("Pembagian dengan nol tidak bisa.");
+        return;
+      }
+      result = a / b;
+      break;
+    default:
+      alert("Operator tidak dikenali. Gunakan +, -, * atau /.");
+      return;
+  }
+
+  alert("Hasil: " + result);
+}
+</script>
+</html>

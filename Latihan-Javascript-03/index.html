@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Latihan Javascript 03</title>
+    </head>
+<body>
+    <div id="timer-display"></div>
+    <form>
+        <button type="button" onclick="myStart()">Start</button>
+        <button type="button" onclick="myStop()">Stop</button>
+        <button type="button" onclick="myReset()">Reset</button>
+    </form>
+</body>
+<script>
+    let timer = null;
+    let elapsed = 0;
+    function formatTime(s) {
+      const h = Math.floor(s / 3600);
+      const m = Math.floor((s % 3600) / 60);
+      const sec = s % 60;
+      return String(h).padStart(2, '0') + ':' +
+             String(m).padStart(2, '0') + ':' +
+             String(sec).padStart(2, '0');
+    }
+    function updateDisplay() {
+      document.getElementById('timer-display').textContent = formatTime(elapsed);
+    }
+    function myStart() {
+      if (timer !== null) return;
+      timer = setInterval(() => {
+        elapsed++;
+        updateDisplay();
+      }, 1000);
+    }
+    function myStop() {
+      if (timer === null) return;
+      clearInterval(timer);
+      timer = null;
+    }
+    function myReset() {
+      myStop();
+      elapsed = 0;
+      updateDisplay();
+    }
+    updateDisplay();
+</script>
+</html>
